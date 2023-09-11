@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Davinci List</title>
+        <link rel="shortcut icon" type="x-icon" href="https://i.ibb.co/NF7my4s/Your-paragraph-text-removebg-preview.png">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+        <script type="text/javascript" src="{{ url_for('static', filename='js/main.js')}}"></script>
+   </head>
+    <body>
+        <!-- LOGO -->
+        <div>
+            <a href="https://imgbb.com/"><img src="https://i.ibb.co/TH8Ydfz/Davinci-1-removebg-preview.png" alt="Davinci-1-removebg-preview" border="0"></a>
+        </div>
+
+        <!-- REMOVE ITEMS FORM -->
+        <div id="remove_items">
+            <form action="/remove_items" method="POST">
+                {% for item in shopping_items%}
+                <input type="checkbox" name="check" id="{{item}}" value="{{item}}" onchange="check_me('{{ item }}')">
+                <label for="{{items}}" name="{{item}}">{{ item }}</label><br>
+                {% endfor %}
+                <input type="submit" value="CHECK ITEMS" id="remove_btn">
+            </form>
+        </div>
+
+        <!-- ADD ITEMS FORM -->
+        <div id="add_item">
+            <form action="/add_items" method="POST">
+                <select name="select_items">
+                {% for item in all_items %}
+                <option value="{{ item }}">{{ item }}</option>
+                {% endfor %}
+                <input type="submit" value="ADD ITEM" id="add_btn">
+            </form>
+        </div>
+    </body>
+</html>
